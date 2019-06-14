@@ -6,6 +6,14 @@ namespace j2p.Domain.Entities
 {
     public class User : EntityBase
     {
+        public Name Name { get; protected set; }
+
+        public Email Email { get; protected set; }
+
+        public string Password { get; protected set; }
+
+        public string Phone { get; protected set; }
+
         protected User()
         {
 
@@ -20,12 +28,13 @@ namespace j2p.Domain.Entities
             AddNotifications(email);
         }
 
-        public Name Name { get; protected set; }
-
-        public Email Email { get; protected set; }
-
-        public string Password { get; protected set; }
-
-        public string Phone { get; protected set; }
+        public User(Name name, Email email, string password, string phone)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            Password = Password.ConvertToMD5();
+            Phone = phone;
+        }
     }
 }
