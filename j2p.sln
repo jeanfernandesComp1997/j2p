@@ -3,15 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Domain", "j2p.Domain\j2p.Domain.csproj", "{8034CE1C-32FA-43B1-9FF2-2E9D76DC5AE9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{7DBB556E-3257-4F4D-A1AB-9F131080613B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{614B90A1-2F0A-482B-B9EF-8D7B04F1994A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{6A56D75C-52BC-4838-8140-6C453C11F351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "j2p.Infra.Data", "j2p.Infra.Data\j2p.Infra.Data.csproj", "{07508F16-70FE-4820-829D-604DF3815526}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Infra.Data", "j2p.Infra.Data\j2p.Infra.Data.csproj", "{07508F16-70FE-4820-829D-604DF3815526}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{511E020F-E9DA-461A-8634-3C458DF63F9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Services", "{DCA015C4-917B-4A86-AE6F-20DA8FEB0657}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{12CF9D18-714B-4D79-A61D-A323006DB762}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Api", "j2p.Api\j2p.Api.csproj", "{6800FC3A-3885-4D5F-818D-990B597841D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Domain", "j2p.Domain\j2p.Domain.csproj", "{8C8762FB-2A24-4947-A516-BAC7CE40D8FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,22 +27,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8034CE1C-32FA-43B1-9FF2-2E9D76DC5AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8034CE1C-32FA-43B1-9FF2-2E9D76DC5AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8034CE1C-32FA-43B1-9FF2-2E9D76DC5AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8034CE1C-32FA-43B1-9FF2-2E9D76DC5AE9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07508F16-70FE-4820-829D-604DF3815526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07508F16-70FE-4820-829D-604DF3815526}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07508F16-70FE-4820-829D-604DF3815526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07508F16-70FE-4820-829D-604DF3815526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6800FC3A-3885-4D5F-818D-990B597841D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6800FC3A-3885-4D5F-818D-990B597841D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6800FC3A-3885-4D5F-818D-990B597841D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6800FC3A-3885-4D5F-818D-990B597841D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C8762FB-2A24-4947-A516-BAC7CE40D8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8762FB-2A24-4947-A516-BAC7CE40D8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8762FB-2A24-4947-A516-BAC7CE40D8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8762FB-2A24-4947-A516-BAC7CE40D8FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8034CE1C-32FA-43B1-9FF2-2E9D76DC5AE9} = {7DBB556E-3257-4F4D-A1AB-9F131080613B}
 		{6A56D75C-52BC-4838-8140-6C453C11F351} = {614B90A1-2F0A-482B-B9EF-8D7B04F1994A}
 		{07508F16-70FE-4820-829D-604DF3815526} = {6A56D75C-52BC-4838-8140-6C453C11F351}
+		{6800FC3A-3885-4D5F-818D-990B597841D9} = {511E020F-E9DA-461A-8634-3C458DF63F9A}
+		{8C8762FB-2A24-4947-A516-BAC7CE40D8FD} = {7DBB556E-3257-4F4D-A1AB-9F131080613B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {580099B5-5407-4361-8400-692B46B1D98D}
