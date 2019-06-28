@@ -4,9 +4,7 @@ using j2p.Infra.Data.Context.MAP;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using prmToolkit.NotificationPattern;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace j2p.Infra.Data.Context
 {

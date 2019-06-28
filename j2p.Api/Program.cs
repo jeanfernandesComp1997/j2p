@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace j2p.Api
+namespace j2p.Presentation.Api
 {
     public class Program
     {

@@ -4,6 +4,8 @@ namespace j2p.Domain.ValueObjects
 {
     public class Email : Notifiable
     {
+        public string Adress { get; private set; }
+
         protected Email()
         {
 
@@ -16,7 +18,5 @@ namespace j2p.Domain.ValueObjects
             new AddNotifications<Email>(this)
                 .IfNotEmail(x => x.Adress, "Endereço de email inválido.");
         }
-
-        public string Adress { get; private set; }
     }
 }

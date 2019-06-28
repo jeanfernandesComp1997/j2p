@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace j2p.Api
+namespace j2p.Presentation.Api
 {
     public class Startup
     {

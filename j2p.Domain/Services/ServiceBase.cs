@@ -3,7 +3,6 @@ using j2p.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace j2p.Domain.Services
 {
@@ -19,7 +18,7 @@ namespace j2p.Domain.Services
         public TEntity Add(TEntity obj)
         {
             _repository.Add(obj);
-            return null;
+            return obj;
         }
 
         public void Delete(TEntity obj)
@@ -27,9 +26,15 @@ namespace j2p.Domain.Services
             _repository.Delete(obj);
         }
 
-        public void Dispose()
+        public TEntity Update(TEntity obj)
         {
-            _repository.Dispose();
+            _repository.Update(obj);
+            return obj;
+        }
+
+        public TEntity GetById(Guid id)
+        {
+            return _repository.GetById(id);
         }
 
         public IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter)
@@ -42,15 +47,9 @@ namespace j2p.Domain.Services
             return _repository.GetAll();
         }
 
-        public TEntity GetById(Guid id)
+        public void Dispose()
         {
-            return _repository.GetById(id);
-        }
-
-        public TEntity Update(TEntity obj)
-        {
-            _repository.Update(obj);
-            return null;
+            _repository.Dispose();
         }
     }
 }

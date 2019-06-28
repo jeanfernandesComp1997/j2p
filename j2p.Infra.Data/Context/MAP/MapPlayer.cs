@@ -2,9 +2,6 @@
 using j2p.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace j2p.Infra.Data.Context.MAP
 {
@@ -32,7 +29,6 @@ namespace j2p.Infra.Data.Context.MAP
             builder.Property(x => x.Phone).HasMaxLength(50).IsRequired();
 
             builder.Property(x => x.Picture).HasMaxLength(200).IsRequired();
-
         }
     }
 }

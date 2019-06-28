@@ -1,13 +1,33 @@
 ﻿using j2p.Domain.Entities.Base;
 using prmToolkit.NotificationPattern;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace j2p.Domain.Entities
 {
     public class Local : EntityBase
     {
+        public string Country { get; protected set; }
+
+        public string State { get; protected set; }
+
+        public string City { get; protected set; }
+
+        public string Cep { get; protected set; }
+
+        public string Street { get; protected set; }
+
+        public string Number { get; protected set; }
+
+        public string Complement { get; protected set; }
+
+        public string Phone { get; protected set; }
+
+        public string Type { get; protected set; }
+
+        public Owner Owner { get; protected set; }
+
+        public List<Event> Events { get; protected set; }
+
         protected Local()
         {
 
@@ -38,27 +58,5 @@ namespace j2p.Domain.Entities
 
             AddNotifications(owner);
         }
-
-        public string Country { get; private set; }
-
-        public string State { get; private set; }
-
-        public string City { get; private set; }
-
-        public string Cep { get; private set; }
-
-        public string Street { get; private set; }
-
-        public string Number { get; private set; }
-
-        public string Complement { get; private set; }
-
-        public string Phone { get; private set; }
-
-        public string Type { get; private set; }
-
-        public Owner Owner { get; private set; }
-
-        public List<Event> Events { get; private set; }
     }
 }

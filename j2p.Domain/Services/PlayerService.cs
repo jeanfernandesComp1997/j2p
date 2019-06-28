@@ -1,5 +1,4 @@
-﻿
-using j2p.Domain.Entities;
+﻿using j2p.Domain.Entities;
 using j2p.Domain.Interfaces.Repositories;
 using j2p.Domain.Interfaces.Services;
 

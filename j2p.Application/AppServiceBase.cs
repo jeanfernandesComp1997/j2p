@@ -26,9 +26,15 @@ namespace j2p.Application
             _serviceBase.Delete(obj);
         }
 
-        public void Dispose()
+        public TEntity Update(TEntity obj)
         {
-            _serviceBase.Dispose();
+            _serviceBase.Update(obj);
+            return null;
+        }
+
+        public TEntity GetById(Guid id)
+        {
+            return _serviceBase.GetById(id);
         }
 
         public IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter)
@@ -41,15 +47,9 @@ namespace j2p.Application
             return _serviceBase.GetAll();
         }
 
-        public TEntity GetById(Guid id)
+        public void Dispose()
         {
-            return _serviceBase.GetById(id);
-        }
-
-        public TEntity Update(TEntity obj)
-        {
-            _serviceBase.Update(obj);
-            return null;
+            _serviceBase.Dispose();
         }
     }
 }

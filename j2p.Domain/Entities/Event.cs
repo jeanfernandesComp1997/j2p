@@ -2,12 +2,20 @@
 using prmToolkit.NotificationPattern;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace j2p.Domain.Entities
 {
     public class Event : EntityBase
     {
+        public string Title { get; protected set; }
+        public DateTime Date { get; protected set; }
+        public double Value { get; protected set; }
+        public int Limit { get; protected set; }
+        public string Status { get; protected set; }
+        public User Organizer { get; protected set; }
+        public List<User> Players { get; protected set; }
+        public Local Local { get; protected set; }
+
         protected Event()
         {
 
@@ -33,14 +41,5 @@ namespace j2p.Domain.Entities
             AddNotifications(organizer);
             AddNotifications(local);
         }
-
-        public string Title { get; private set; }
-        public DateTime Date { get; private set; }
-        public double Value { get; private set; }
-        public int Limit { get; private set; }
-        public string Status { get; private set; }
-        public User Organizer { get; private set; }
-        public List<User> Players { get; private set; }
-        public Local Local { get; private set; }
     }
 }

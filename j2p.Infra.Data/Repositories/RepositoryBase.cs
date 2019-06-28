@@ -1,10 +1,10 @@
-﻿using System;
+﻿using j2p.Domain.Interfaces.Repositories;
+using j2p.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using j2p.Domain.Interfaces.Repositories;
-using j2p.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace j2p.Infra.Data.Repositories
 {
@@ -31,6 +31,19 @@ namespace j2p.Infra.Data.Repositories
             _context.SaveChanges();
         }
 
+        public TEntity Update(TEntity obj)
+        {
+            _context.Entry(obj).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return obj;
+        }
+
+        public TEntity GetById(Guid id)
+        {
+            return _context.Set<TEntity>().Find(id);
+        }
+
         public IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter)
         {
             throw new NotImplementedException();
@@ -39,19 +52,6 @@ namespace j2p.Infra.Data.Repositories
         public IList<TEntity> GetAll()
         {
             return _context.Set<TEntity>().ToList();
-        }
-
-        public TEntity GetById(Guid id)
-        {
-            return _context.Set<TEntity>().Find(id);
-        }
-
-        public TEntity Update(TEntity obj)
-        {
-            _context.Entry(obj).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            return obj;
         }
 
         public void Dispose()

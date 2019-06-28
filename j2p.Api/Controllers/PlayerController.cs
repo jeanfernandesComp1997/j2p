@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using j2p.Application.Interfaces;
+﻿using j2p.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
-namespace j2p.Api.Controllers
+namespace j2p.Presentation.Api.Controllers
 {
     public class PlayerController : Controller
     {

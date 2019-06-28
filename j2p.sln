@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Service
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{12CF9D18-714B-4D79-A61D-A323006DB762}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Api", "j2p.Api\j2p.Api.csproj", "{6800FC3A-3885-4D5F-818D-990B597841D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Presentation.Api", "j2p.Api\j2p.Presentation.Api.csproj", "{6800FC3A-3885-4D5F-818D-990B597841D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "j2p.Domain", "j2p.Domain\j2p.Domain.csproj", "{8C8762FB-2A24-4947-A516-BAC7CE40D8FD}"
 EndProject
