@@ -8,7 +8,7 @@ using System.Text;
 
 namespace j2p.Infra.Data.Context.MAP
 {
-    class MapPlayer : IEntityTypeConfiguration<Player>
+    public class MapPlayer : IEntityTypeConfiguration<Player>
     {
         public void Configure(EntityTypeBuilder<Player> builder)
         {

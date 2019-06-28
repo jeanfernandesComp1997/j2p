@@ -22,18 +22,13 @@ namespace j2p.Infra.Data.Repositories
             _context.Set<TEntity>().Add(obj);
             _context.SaveChanges();
 
-            return null;
+            return obj;
         }
 
         public void Delete(TEntity obj)
         {
             _context.Set<TEntity>().Remove(obj);
             _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
 
         public IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter)
@@ -56,7 +51,12 @@ namespace j2p.Infra.Data.Repositories
             _context.Entry(obj).State = EntityState.Modified;
             _context.SaveChanges();
 
-            return null;
+            return obj;
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

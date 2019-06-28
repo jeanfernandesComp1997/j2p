@@ -18,5 +18,7 @@ namespace j2p.Domain.Interfaces.Services
         TEntity GetById(Guid id);
 
         IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter);
+
+        void Dispose();
     }
 }

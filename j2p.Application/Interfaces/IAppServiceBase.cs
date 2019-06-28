@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace j2p.Domain.Interfaces.Repositories
+namespace j2p.Application.Interfaces
 {
-    public interface IBaseRepository<TEntity> where TEntity:class
+    public interface IAppServiceBase<TEntity> where TEntity : class
     {
         TEntity Add(TEntity obj);
 
