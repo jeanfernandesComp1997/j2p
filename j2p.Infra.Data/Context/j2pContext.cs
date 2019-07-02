@@ -1,9 +1,8 @@
 ﻿using j2p.Domain.Entities;
-using j2p.Domain.ValueObjects;
+using j2p.Domain.Notifications;
 using j2p.Infra.Data.Context.MAP;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using prmToolkit.NotificationPattern;
 using System.Collections.Generic;
 
 namespace j2p.Infra.Data.Context
@@ -14,7 +13,7 @@ namespace j2p.Infra.Data.Context
         : base(options)
         { }
 
-        public DbSet<Player> Players { get; set; }
+        public DbSet<Player> Player { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,8 +21,6 @@ namespace j2p.Infra.Data.Context
 
             //ignore classes
             modelBuilder.Ignore<Notification>();
-            modelBuilder.Ignore<Name>();
-            modelBuilder.Ignore<Email>();
 
             //app settings
             modelBuilder.ApplyConfiguration(new MapPlayer());

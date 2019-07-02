@@ -1,6 +1,4 @@
-﻿using j2p.Domain.ValueObjects;
-
-namespace j2p.Domain.Entities
+﻿namespace j2p.Domain.Entities
 {
     public class Player : User
     {
@@ -11,7 +9,7 @@ namespace j2p.Domain.Entities
 
         }
 
-        public Player(Name name, Email email, string password, string phone, string picture) : base(name, email, password, phone)
+        public Player(string firstName, string lastName, string email, string password, string phone, string picture) : base(firstName, lastName, email, password, phone)
         {
             Picture = picture;
         }

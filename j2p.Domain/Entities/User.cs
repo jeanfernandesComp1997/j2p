@@ -1,14 +1,15 @@
 ﻿using j2p.Domain.Entities.Base;
 using j2p.Domain.Extensions;
-using j2p.Domain.ValueObjects;
 
 namespace j2p.Domain.Entities
 {
     public class User : EntityBase
     {
-        public Name Name { get; protected set; }
+        public string FirstName { get; protected set; }
 
-        public Email Email { get; protected set; }
+        public string LastName { get; protected set; }
+
+        public string Email { get; protected set; }
 
         public string Password { get; protected set; }
 
@@ -19,18 +20,17 @@ namespace j2p.Domain.Entities
 
         }
 
-        public User(Email email, string password)
+        public User(string email, string password)
         {
             Email = email;
             Password = password;
             Password = Password.ConvertToMD5();
-
-            AddNotifications(email);
         }
 
-        public User(Name name, Email email, string password, string phone)
+        public User(string firstName, string lastName, string email, string password, string phone)
         {
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Password = password;
             Password = Password.ConvertToMD5();

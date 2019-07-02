@@ -1,9 +1,8 @@
 ﻿using System;
-using prmToolkit.NotificationPattern;
 
 namespace j2p.Domain.Entities.Base
 {
-    public abstract class EntityBase : Notifiable
+    public abstract class EntityBase
     {
         public EntityBase()
         {

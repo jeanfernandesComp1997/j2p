@@ -18,7 +18,7 @@ namespace j2p.Application
         public TEntity Add(TEntity obj)
         {
             _serviceBase.Add(obj);
-            return null;
+            return obj;
         }
 
         public void Delete(TEntity obj)

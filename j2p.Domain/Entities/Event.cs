@@ -1,5 +1,4 @@
 ﻿using j2p.Domain.Entities.Base;
-using prmToolkit.NotificationPattern;
 using System;
 using System.Collections.Generic;
 
@@ -31,15 +30,6 @@ namespace j2p.Domain.Entities
             Organizer = organizer;
             Players = players;
             Local = local;
-
-            new AddNotifications<Event>(this)
-                .IfNullOrInvalidLength(x => x.Title, 2, 50, "O Título é obrigatório e deve conter entre 2 e 50 caracteres.")
-                .IfNotDate(x => x.Date.ToString(), "Data inválida.")
-                .IfNotNull(x => x.Value, "O campo Valor não pode ser vazio.")
-                .IfNotNull(x => x.Limit, "O campo Limite não pode ser vazio.");
-
-            AddNotifications(organizer);
-            AddNotifications(local);
         }
     }
 }

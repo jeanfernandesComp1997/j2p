@@ -1,5 +1,7 @@
-﻿using j2p.Infra.Data.Context;
+﻿using AutoMapper;
+using j2p.Infra.Data.Context;
 using j2p.Infra.IoC;
+using j2p.Presentation.Api.AutoMapperCfg;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +37,14 @@ namespace j2p.Presentation.Api
             services.AddDbContext<j2pContext>(options => options.UseMySql(connection));
 
             services.AddMvc();
+
+            var config = new AutoMapper.MapperConfiguration(c =>
+            {
+                c.AddProfile(new ApplicationProfile());
+            });
+
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
