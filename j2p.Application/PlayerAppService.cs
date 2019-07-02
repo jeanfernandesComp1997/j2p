@@ -13,5 +13,22 @@ namespace j2p.Application
         {
             _playerService = playerService;
         }
+
+        public Player Add(Player obj)
+        {
+            _playerService.Add(obj);
+            return obj;
+        }
+
+        public void Delete(Player obj)
+        {
+            _playerService.Delete(obj);
+        }
+
+        public Player Update(Player obj)
+        {
+            _playerService.Update(obj);
+            return null;
+        }
     }
 }

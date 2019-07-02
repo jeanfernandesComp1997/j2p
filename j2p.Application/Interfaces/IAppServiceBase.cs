@@ -6,12 +6,6 @@ namespace j2p.Application.Interfaces
 {
     public interface IAppServiceBase<TEntity> where TEntity : class
     {
-        TEntity Add(TEntity obj);
-
-        void Delete(TEntity obj);
-
-        TEntity Update(TEntity obj);
-
         TEntity GetById(Guid id);
 
         IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter);

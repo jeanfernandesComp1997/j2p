@@ -13,5 +13,24 @@ namespace j2p.Domain.Services
         {
             _playerRepository = playerRepository;
         }
+
+        public Player Add(Player obj)
+        {
+            obj.Validate();
+            _playerRepository.Add(obj);
+            return obj;
+        }
+
+        public void Delete(Player obj)
+        {
+            _playerRepository.Delete(obj);
+        }
+
+        public Player Update(Player obj)
+        {
+            obj.Validate();
+            _playerRepository.Update(obj);
+            return obj;
+        }
     }
 }

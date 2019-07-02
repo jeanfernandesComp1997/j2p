@@ -1,5 +1,4 @@
 ﻿using j2p.Domain.Entities;
-using j2p.Domain.Notifications;
 using j2p.Infra.Data.Context.MAP;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -18,9 +17,6 @@ namespace j2p.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //ignore classes
-            modelBuilder.Ignore<Notification>();
 
             //app settings
             modelBuilder.ApplyConfiguration(new MapPlayer());

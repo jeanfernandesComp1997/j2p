@@ -15,23 +15,6 @@ namespace j2p.Domain.Services
             _repository = repository;
         }
 
-        public TEntity Add(TEntity obj)
-        {
-            _repository.Add(obj);
-            return obj;
-        }
-
-        public void Delete(TEntity obj)
-        {
-            _repository.Delete(obj);
-        }
-
-        public TEntity Update(TEntity obj)
-        {
-            _repository.Update(obj);
-            return obj;
-        }
-
         public TEntity GetById(Guid id)
         {
             return _repository.GetById(id);

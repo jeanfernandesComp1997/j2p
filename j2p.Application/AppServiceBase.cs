@@ -15,22 +15,7 @@ namespace j2p.Application
             _serviceBase = serviceBase;
         }
 
-        public TEntity Add(TEntity obj)
-        {
-            _serviceBase.Add(obj);
-            return obj;
-        }
-
-        public void Delete(TEntity obj)
-        {
-            _serviceBase.Delete(obj);
-        }
-
-        public TEntity Update(TEntity obj)
-        {
-            _serviceBase.Update(obj);
-            return null;
-        }
+        
 
         public TEntity GetById(Guid id)
         {
