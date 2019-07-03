@@ -21,9 +21,9 @@ namespace j2p.Application
             return obj;
         }
 
-        public void Delete(Player obj)
+        public void Delete(Player obj, Guid id)
         {
-            _playerService.Delete(obj);
+            _playerService.Delete(obj, id);
         }
 
         public Player Update(Player obj)

@@ -7,7 +7,7 @@ namespace j2p.Application.Interfaces
     {
         Player Add(Player obj);
 
-        void Delete(Player obj);
+        void Delete(Player obj, Guid id);
 
         Player Update(Player obj);
     }

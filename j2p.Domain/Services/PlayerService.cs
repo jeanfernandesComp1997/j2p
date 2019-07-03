@@ -22,8 +22,10 @@ namespace j2p.Domain.Services
             return obj;
         }
 
-        public void Delete(Player obj)
+        public void Delete(Player obj, Guid id)
         {
+            obj.ChangeId(id);
+
             _playerRepository.Delete(obj);
         }
 
