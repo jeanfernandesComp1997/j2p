@@ -1,6 +1,7 @@
 ﻿using j2p.Application.Interfaces;
 using j2p.Domain.Entities;
 using j2p.Domain.Interfaces.Services;
+using System;
 
 namespace j2p.Application
 {
@@ -28,7 +29,7 @@ namespace j2p.Application
         public Player Update(Player obj)
         {
             _playerService.Update(obj);
-            return null;
+            return obj;
         }
     }
 }

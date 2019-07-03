@@ -17,28 +17,6 @@ namespace j2p.Infra.Data.Repositories
             _context = context;
         }
 
-        public TEntity Add(TEntity obj)
-        {
-            _context.Set<TEntity>().Add(obj);
-            _context.SaveChanges();
-
-            return obj;
-        }
-
-        public void Delete(TEntity obj)
-        {
-            _context.Set<TEntity>().Remove(obj);
-            _context.SaveChanges();
-        }
-
-        public TEntity Update(TEntity obj)
-        {
-            _context.Entry(obj).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            return obj;
-        }
-
         public TEntity GetById(Guid id)
         {
             return _context.Set<TEntity>().Find(id);

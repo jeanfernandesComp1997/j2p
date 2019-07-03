@@ -15,8 +15,6 @@ namespace j2p.Application
             _serviceBase = serviceBase;
         }
 
-        
-
         public TEntity GetById(Guid id)
         {
             return _serviceBase.GetById(id);

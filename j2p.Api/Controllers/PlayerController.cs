@@ -37,6 +37,40 @@ namespace j2p.Presentation.Api.Controllers
         }
 
         [AllowAnonymous]
+        [HttpDelete]
+        [Route("api/v1/player/delete")]
+        public IActionResult Delete([FromBody] PlayerViewModel player)
+        {
+            try
+            {
+                var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
+                _playerAppService.Delete(playerDomain);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut]
+        [Route("api/v1/player/update")]
+        public IActionResult Update([FromBody] PlayerViewModel player)
+        {
+            try
+            {
+                var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
+                var response = _playerAppService.Update(playerDomain);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/v1/player/getall")]
         public IActionResult GetAll()
@@ -51,5 +85,22 @@ namespace j2p.Presentation.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("api/v1/player/getbyid/{id:Guid}")]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                var response = _playerAppService.GetById(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
