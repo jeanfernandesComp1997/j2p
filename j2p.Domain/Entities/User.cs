@@ -56,10 +56,5 @@ namespace j2p.Domain.Entities
             if (string.IsNullOrEmpty(this.Phone))
                 _errors.AppendLine("Telefone inválido.");
         }
-
-        public string GetTimestamp(DateTime value)
-        {
-            return value.ToString("yyyyMMddHHmmssffff");
-        }
     }
 }

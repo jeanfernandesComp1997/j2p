@@ -9,7 +9,7 @@ using j2p.Infra.Data.Context;
 namespace j2p.Infra.Data.Migrations
 {
     [DbContext(typeof(j2pContext))]
-    [Migration("20190703004941_Setup")]
+    [Migration("20190704005627_Setup")]
     partial class Setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,6 +19,34 @@ namespace j2p.Infra.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("j2p.Domain.Entities.Event", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<Guid?>("IdOrganizer");
+
+                    b.Property<int>("Limit");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(36);
+
+                    b.Property<double>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdOrganizer");
+
+                    b.ToTable("Event");
+                });
+
             modelBuilder.Entity("j2p.Domain.Entities.Player", b =>
                 {
                     b.Property<Guid>("Id")
@@ -27,6 +55,8 @@ namespace j2p.Infra.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(200);
+
+                    b.Property<Guid?>("EventId");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -50,7 +80,23 @@ namespace j2p.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EventId");
+
                     b.ToTable("Player");
+                });
+
+            modelBuilder.Entity("j2p.Domain.Entities.Event", b =>
+                {
+                    b.HasOne("j2p.Domain.Entities.Player", "Organizer")
+                        .WithMany()
+                        .HasForeignKey("IdOrganizer");
+                });
+
+            modelBuilder.Entity("j2p.Domain.Entities.Player", b =>
+                {
+                    b.HasOne("j2p.Domain.Entities.Event")
+                        .WithMany("Players")
+                        .HasForeignKey("EventId");
                 });
 #pragma warning restore 612, 618
         }

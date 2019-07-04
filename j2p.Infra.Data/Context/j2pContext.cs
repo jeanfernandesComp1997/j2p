@@ -13,13 +13,21 @@ namespace j2p.Infra.Data.Context
         { }
 
         public DbSet<Player> Player { get; set; }
+        public DbSet<Event> Event { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            //ignore classes
+            modelBuilder.Ignore<User>();
+            modelBuilder.Ignore<Local>();
+            modelBuilder.Ignore<Owner>();
+
             //app settings
             modelBuilder.ApplyConfiguration(new MapPlayer());
+            modelBuilder.ApplyConfiguration(new MapEvent());
 
             base.OnModelCreating(modelBuilder);
         }
