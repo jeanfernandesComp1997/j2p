@@ -1,7 +1,6 @@
 ﻿using j2p.Domain.Entities;
 using j2p.Domain.Interfaces.Repositories;
 using j2p.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace j2p.Infra.Data.Repositories
 {
@@ -30,7 +29,7 @@ namespace j2p.Infra.Data.Repositories
 
         public Player Update(Player obj)
         {
-            _context.Entry(obj).State = EntityState.Modified;
+            _context.Set<Player>().Update(obj);
             _context.SaveChanges();
 
             return obj;

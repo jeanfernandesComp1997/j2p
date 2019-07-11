@@ -23,6 +23,8 @@ namespace j2p.Infra.Data.Context.MAP
             builder.Property(x => x.Phone).HasMaxLength(50).IsRequired();
 
             builder.Property(x => x.Picture).HasMaxLength(200).IsRequired();
+
+            builder.HasMany(x => x.Events);
         }
     }
 }

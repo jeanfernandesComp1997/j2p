@@ -21,9 +21,9 @@ namespace j2p.Application
             return obj;
         }
 
-        public void Delete(Event obj, Guid id)
+        public void Delete(Event obj)
         {
-            _eventService.Delete(obj, id);
+            _eventService.Delete(obj, obj.Id);
         }
 
         public Event Update(Event obj)

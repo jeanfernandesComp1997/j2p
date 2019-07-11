@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\j2p.Application\j2p.Application.csproj" />
     <ProjectReference Include="..\j2p.Domain\j2p.Domain.csproj" />
-    <ProjectReference Include="..\j2p.Infra.Data\j2p.Infra.Data.csproj" />
+    <ProjectReference Include="..\j2p.Infra.Data.NHibernate\j2p.Infra.Data.NHibernate.csproj" />
   </ItemGroup>
 
 </Project>

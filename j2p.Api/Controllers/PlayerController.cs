@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using j2p.Application.Interfaces;
 using j2p.Domain.Entities;
-using j2p.Presentation.Api.ViewModels;
+using j2p.Presentation.Api.ViewModels.AddViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,13 +38,13 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpDelete]
-        [Route("api/v1/player/delete/{id:Guid}")]
-        public IActionResult Delete([FromBody] PlayerViewModel player, Guid id)
+        [Route("api/v1/player/delete")]
+        public IActionResult Delete([FromBody] PlayerViewModel player)
         {
             try
             {
                 var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
-                _playerAppService.Delete(playerDomain, id);
+                _playerAppService.Delete(playerDomain);
                 return Ok();
             }
             catch (Exception ex)

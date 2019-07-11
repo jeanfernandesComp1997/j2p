@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace j2p.Infra.Data.Migrations
 {
-    public partial class Setup : Migration
+    public partial class setup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,23 +35,35 @@ namespace j2p.Infra.Data.Migrations
                     Value = table.Column<double>(nullable: false),
                     Limit = table.Column<int>(nullable: false),
                     Status = table.Column<string>(maxLength: 50, nullable: false),
-                    IdOrganizer = table.Column<Guid>(nullable: true)
+                    IdOwner = table.Column<Guid>(nullable: true),
+                    PlayerId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Event", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Event_Player_IdOrganizer",
-                        column: x => x.IdOrganizer,
+                        name: "FK_Event_Player_IdOwner",
+                        column: x => x.IdOwner,
+                        principalTable: "Player",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Event_Player_PlayerId",
+                        column: x => x.PlayerId,
                         principalTable: "Player",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Event_IdOrganizer",
+                name: "IX_Event_IdOwner",
                 table: "Event",
-                column: "IdOrganizer");
+                column: "IdOwner");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Event_PlayerId",
+                table: "Event",
+                column: "PlayerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Player_EventId",
@@ -70,7 +82,11 @@ namespace j2p.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Event_Player_IdOrganizer",
+                name: "FK_Event_Player_IdOwner",
+                table: "Event");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Event_Player_PlayerId",
                 table: "Event");
 
             migrationBuilder.DropTable(

@@ -1,9 +1,11 @@
 ﻿using System;
 
-namespace j2p.Presentation.Api.ViewModels
+namespace j2p.Presentation.Api.ViewModels.AddViewModel
 {
     public abstract class UserViewModel
     {
+        public Guid Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

@@ -10,8 +10,6 @@ namespace j2p.Infra.Data.Context.MAP
         {
             builder.ToTable("Event");
 
-            builder.HasOne(x => x.Organizer).WithMany().HasForeignKey("IdOrganizer");
-
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Title).HasMaxLength(36).IsRequired();
@@ -23,6 +21,10 @@ namespace j2p.Infra.Data.Context.MAP
             builder.Property(x => x.Limit).IsRequired();
 
             builder.Property(x => x.Status).HasMaxLength(50).IsRequired();
+
+            builder.HasOne(x => x.Owner).WithMany().HasForeignKey("IdOwner").OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.Players);
         }
     }
 }

@@ -9,8 +9,8 @@ using j2p.Infra.Data.Context;
 namespace j2p.Infra.Data.Migrations
 {
     [DbContext(typeof(j2pContext))]
-    [Migration("20190704005627_Setup")]
-    partial class Setup
+    [Migration("20190709215512_setup")]
+    partial class setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,11 @@ namespace j2p.Infra.Data.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<Guid?>("IdOrganizer");
+                    b.Property<Guid?>("IdOwner");
 
                     b.Property<int>("Limit");
+
+                    b.Property<Guid?>("PlayerId");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -42,7 +44,9 @@ namespace j2p.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdOrganizer");
+                    b.HasIndex("IdOwner");
+
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("Event");
                 });
@@ -87,9 +91,14 @@ namespace j2p.Infra.Data.Migrations
 
             modelBuilder.Entity("j2p.Domain.Entities.Event", b =>
                 {
-                    b.HasOne("j2p.Domain.Entities.Player", "Organizer")
+                    b.HasOne("j2p.Domain.Entities.Player", "Owner")
                         .WithMany()
-                        .HasForeignKey("IdOrganizer");
+                        .HasForeignKey("IdOwner")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("j2p.Domain.Entities.Player")
+                        .WithMany("Events")
+                        .HasForeignKey("PlayerId");
                 });
 
             modelBuilder.Entity("j2p.Domain.Entities.Player", b =>

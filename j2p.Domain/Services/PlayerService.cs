@@ -7,32 +7,42 @@ namespace j2p.Domain.Services
 {
     public class PlayerService : ServiceBase<Player>, IPlayerService
     {
-        private readonly IPlayerRepository _playerRepository;
+        private readonly IUoWRepository _unitOfWork;
 
-        public PlayerService(IPlayerRepository playerRepository) 
-            : base(playerRepository)
+        public PlayerService(IUoWRepository unitOfWork) : base(unitOfWork.PlayerRepository)
         {
-            _playerRepository = playerRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public Player Add(Player obj)
+        public Player Save(Player obj)
         {
             obj.Validate();
-            _playerRepository.Add(obj);
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.PlayerRepository.Add(obj);
+            _unitOfWork.Commit();
+
             return obj;
         }
 
-        public void Delete(Player obj, Guid id)
+        public void Delete(Guid id)
         {
-            obj.ChangeId(id);
-            _playerRepository.Delete(obj);
+            Player player = _unitOfWork.PlayerRepository.GetById(id);
+
+            if (player == null)
+                throw new Exception("Player não encontrado");
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.PlayerRepository.Delete(player);
+            _unitOfWork.Commit();
         }
 
         public Player Update(Player obj)
         {
-            obj.Validate();
+            /*obj.Validate();
             _playerRepository.Update(obj);
-            return obj;
+            return obj;*/
+            return null;
         }
     }
 }

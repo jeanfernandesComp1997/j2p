@@ -5,6 +5,8 @@ namespace j2p.Domain.Interfaces.Repositories
     {
         IPlayerRepository PlayerRepository { get; }
 
+        IEventRepository EventRepository { get; }
+
         IOwnerRepository OwnerRepository { get; }
 
         void BeginTransaction();

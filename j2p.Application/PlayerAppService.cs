@@ -17,13 +17,13 @@ namespace j2p.Application
 
         public Player Add(Player obj)
         {
-            _playerService.Add(obj);
+            _playerService.Save(obj);
             return obj;
         }
 
-        public void Delete(Player obj, Guid id)
+        public void Delete(Player obj)
         {
-            _playerService.Delete(obj, id);
+            _playerService.Delete(obj.Id);
         }
 
         public Player Update(Player obj)

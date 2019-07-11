@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using j2p.Infra.Data.Context;
-using j2p.Infra.IoC;
+﻿using j2p.Infra.IoC;
 using j2p.Presentation.Api.AutoMapperCfg;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +32,7 @@ namespace j2p.Presentation.Api
             });
 
             var connection = Configuration["ConnectionStrings:MyConnStr"];
-            services.AddDbContext<j2pContext>(options => options.UseMySql(connection));
+            //services.AddDbContext<j2pContext>(options => options.UseMySql(connection));
 
             services.AddMvc();
 

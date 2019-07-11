@@ -6,37 +6,34 @@ namespace j2p.Domain.Entities
 {
     public class Event : EntityBase
     {
-        public string Title { get; protected set; }
+        public virtual string Title { get; protected set; }
 
-        public DateTime Date { get; protected set; }
+        public virtual DateTime Date { get; protected set; }
 
-        public double Value { get; protected set; }
+        public virtual double Value { get; protected set; }
 
-        public int Limit { get; protected set; }
+        public virtual int Limit { get; protected set; }
 
-        public string Status { get; protected set; }
+        public virtual string Status { get; protected set; }
 
-        public Player Organizer { get; protected set; }
+        public virtual Player Owner { get; protected set; }
 
-        public ICollection<Player> Players { get; protected set; }
+        public virtual List<Player> Players { get; protected set; }
 
-        public Local Local { get; protected set; }
-
-        protected Event()
+        public Event()
         {
 
         }
 
-        public Event(string title, DateTime date, double value, int limit, string status, Player organizer, ICollection<Player> players, Local local)
+        public Event(string title, DateTime date, double value, int limit, string status, Player owner, List<Player> players)
         {
             Title = title;
             Date = date;
             Value = value;
             Limit = limit;
             Status = status;
-            Organizer = organizer;
+            Owner = owner;
             Players = players;
-            Local = local;
         }
 
         public override void Validate()

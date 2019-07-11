@@ -7,7 +7,7 @@ namespace j2p.Application.Interfaces
     {
         Event Add(Event obj);
 
-        void Delete(Event obj, Guid id);
+        void Delete(Event obj);
 
         Event Update(Event obj);
     }

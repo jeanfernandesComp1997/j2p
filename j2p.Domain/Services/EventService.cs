@@ -24,7 +24,6 @@ namespace j2p.Domain.Services
 
         public void Delete(Event obj, Guid id)
         {
-            obj.ChangeId(id);
             _eventRepository.Delete(obj);
         }
 

@@ -1,6 +1,5 @@
 ﻿using j2p.Domain.Interfaces.Repositories;
 using j2p.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

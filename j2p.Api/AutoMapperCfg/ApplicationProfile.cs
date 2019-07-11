@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using j2p.Domain.Entities;
-using j2p.Presentation.Api.ViewModels;
+using j2p.Presentation.Api.ViewModels.AddViewModel;
+using System;
 
 namespace j2p.Presentation.Api.AutoMapperCfg
 {
@@ -8,7 +9,7 @@ namespace j2p.Presentation.Api.AutoMapperCfg
     {
         public ApplicationProfile()
         {
-            CreateMap<PlayerViewModel, Player>();
+            CreateMap<PlayerViewModel, Player>().ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id != Guid.Empty ? x.Id : Guid.NewGuid()));
         }
     }
 }

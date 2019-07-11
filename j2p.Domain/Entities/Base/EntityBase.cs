@@ -19,10 +19,5 @@ namespace j2p.Domain.Entities.Base
         {
             
         }
-
-        public void ChangeId(Guid id)
-        {
-            this.Id = id;
-        }
     }
 }

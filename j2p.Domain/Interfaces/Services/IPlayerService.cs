@@ -5,9 +5,9 @@ namespace j2p.Domain.Interfaces.Services
 {
     public interface IPlayerService : IServiceBase<Player>
     {
-        Player Add(Player obj);
+        Player Save(Player obj);
 
-        void Delete(Player obj, Guid id);
+        void Delete(Guid id);
 
         Player Update(Player obj);
     }

@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace j2p.Domain.Entities
 {
     public class Player : User
     {
-        public string Picture { get; protected set; }
+        public virtual string Picture { get; protected set; }
 
-        protected Player()
+        public virtual List<Event> Events { get; protected set; }
+
+        public Player()
         {
 
         }
