@@ -6,6 +6,7 @@ using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using System;
 
+
 namespace j2p.Infra.Data.NHibernate.UnitOfWork
 {
     public class UnitOfWork : IDisposable, IUoWRepository
@@ -37,6 +38,7 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
             _sessionFactory = Fluently.Configure()
                 .Database(MySQLConfiguration.Standard.ConnectionString(conn))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Mapping.PlayerMap>())
+                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Mapping.EventMap>())
                 .ExposeConfiguration(x => x.Properties.Add("hbm2ddl.keywords", "none"))
                 .ExposeConfiguration(x => new SchemaUpdate(x).Execute(true, true))
                 .BuildSessionFactory();

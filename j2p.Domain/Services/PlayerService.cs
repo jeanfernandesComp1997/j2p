@@ -39,10 +39,13 @@ namespace j2p.Domain.Services
 
         public Player Update(Player obj)
         {
-            /*obj.Validate();
-            _playerRepository.Update(obj);
-            return obj;*/
-            return null;
+            obj.Validate();
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.PlayerRepository.Update(obj);
+            _unitOfWork.Commit();
+
+            return obj;
         }
     }
 }

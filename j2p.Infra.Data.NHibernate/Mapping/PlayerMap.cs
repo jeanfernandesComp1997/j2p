@@ -15,8 +15,6 @@ namespace j2p.Infra.Data.NHibernate.Mapping
             Map(x => x.Password).Length(200).Not.Nullable();
             Map(x => x.Phone).Length(35).Not.Nullable();
             Map(x => x.Picture).Nullable();
-
-            HasManyToMany(x => x.Events).Table("event_player");
         }
     }
 }

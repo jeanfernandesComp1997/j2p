@@ -7,8 +7,6 @@ namespace j2p.Domain.Entities
     {
         public virtual string Picture { get; protected set; }
 
-        public virtual List<Event> Events { get; protected set; }
-
         public Player()
         {
 

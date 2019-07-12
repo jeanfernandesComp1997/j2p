@@ -47,5 +47,10 @@ namespace j2p.Domain.Entities
             if (string.IsNullOrEmpty(this.Status))
                 _errors.AppendLine("Status do evento inválido.");
         }
+
+        public virtual void AddOwner(Player owner)
+        {
+            Owner = owner;
+        }
     }
 }

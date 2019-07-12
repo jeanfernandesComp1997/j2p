@@ -1,33 +1,33 @@
 ﻿using AutoMapper;
 using j2p.Application.Interfaces;
 using j2p.Domain.Entities;
-using j2p.Presentation.Api.ViewModels.AddViewModel;
+using j2p.Presentation.Api.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace j2p.Presentation.Api.Controllers
 {
-    public class PlayerController : Controller
+    public class EventController : Controller
     {
-        private readonly IPlayerAppService _playerAppService;
+        private readonly IEventAppService _eventAppService;
         private readonly IMapper _mapper;
 
-        public PlayerController(IPlayerAppService playerAppService, IMapper mapper)
+        public EventController(IEventAppService eventAppService, IMapper mapper)
         {
-            _playerAppService = playerAppService;
+            _eventAppService = eventAppService;
             _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/v1/player/add")]
-        public IActionResult Add([FromBody] PlayerViewModel player)
+        [Route("api/v1/event/add/{idOwner:Guid}")]
+        public IActionResult Add([FromBody] EventViewModel eventObj, Guid idOwner)
         {
             try
             {
-                var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
-                var response = _playerAppService.Add(playerDomain);
+                var eventDomain = _mapper.Map<EventViewModel, Event>(eventObj);
+                var response = _eventAppService.Add(eventDomain, idOwner);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace j2p.Presentation.Api.Controllers
             }
         }
 
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         [HttpDelete]
         [Route("api/v1/player/delete")]
         public IActionResult Delete([FromBody] PlayerViewModel player)
@@ -100,6 +100,6 @@ namespace j2p.Presentation.Api.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
+        }*/
     }
 }

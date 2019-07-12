@@ -15,9 +15,9 @@ namespace j2p.Application
             _eventService = eventService;
         }
 
-        public Event Add(Event obj)
+        public Event Add(Event obj, Guid idOwner)
         {
-            _eventService.Add(obj);
+            _eventService.Add(obj, idOwner);
             return obj;
         }
 
