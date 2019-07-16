@@ -11,6 +11,7 @@ namespace j2p.Infra.IoC
             services.AddTransient<IAppServiceBase<object>, AppServiceBase<object>>();
             services.AddTransient<IPlayerAppService, PlayerAppService>();
             services.AddTransient<IEventAppService, EventAppService>();
+            services.AddTransient<ILocalAppService, LocalAppService>();
         }
     }
 }

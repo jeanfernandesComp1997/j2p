@@ -7,6 +7,8 @@ namespace j2p.Domain.Interfaces.Repositories
 
         IEventRepository EventRepository { get; }
 
+        ILocalRepository LocalRepository { get; }
+
         IOwnerRepository OwnerRepository { get; }
 
         void BeginTransaction();

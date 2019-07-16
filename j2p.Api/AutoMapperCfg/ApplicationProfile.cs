@@ -11,7 +11,13 @@ namespace j2p.Presentation.Api.AutoMapperCfg
         public ApplicationProfile()
         {
             CreateMap<PlayerViewModel, Player>().ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id != Guid.Empty ? x.Id : Guid.NewGuid()));
+            CreateMap<Player, PlayerViewModel>();
+
             CreateMap<EventViewModel, Event>().ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id != Guid.Empty ? x.Id : Guid.NewGuid()));
+            CreateMap<Event, EventViewModel>();
+
+            CreateMap<LocalViewModel, Local>().ForMember(dest => dest.Id, src => src.MapFrom(x => x.Id != Guid.Empty ? x.Id : Guid.NewGuid()));
+            CreateMap<Local, LocalViewModel>();
         }
     }
 }

@@ -15,15 +15,20 @@ namespace j2p.Application
             _eventService = eventService;
         }
 
-        public Event Add(Event obj, Guid idOwner)
+        public Event Add(Event obj, Guid idOwner, Guid idLocal)
         {
-            _eventService.Add(obj, idOwner);
+            _eventService.Add(obj, idOwner, idLocal);
             return obj;
         }
 
-        public void Delete(Event obj)
+        public void SubscribeEvent(Guid idEvent, Guid idPlayer)
         {
-            _eventService.Delete(obj, obj.Id);
+            _eventService.SubscribeEvent(idEvent, idPlayer);
+        }
+
+        public void Delete(Guid id)
+        {
+            _eventService.Delete(id);
         }
 
         public Event Update(Event obj)

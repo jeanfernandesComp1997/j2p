@@ -14,16 +14,22 @@ namespace j2p.Domain.Services
             _unitOfWork = unitOfWork;
         }
 
-        public Event Add(Event obj, Guid idOwner)
+        public Event Add(Event obj, Guid idOwner, Guid idLocal)
         {
             Player owner = _unitOfWork.PlayerRepository.GetById(idOwner);
 
             if (owner == null)
                 throw new Exception("Owner não encontrado.");
-            
+
+            Local local = _unitOfWork.LocalRepository.GetById(idLocal);
+
+            if (local == null)
+                throw new Exception("Local não encontrado.");
+
             obj.Validate();
 
             obj.AddOwner(owner);
+            obj.AddLocal(local);
 
             _unitOfWork.BeginTransaction();
             _unitOfWork.EventRepository.Add(obj);
@@ -32,18 +38,50 @@ namespace j2p.Domain.Services
             return obj;
         }
 
-        public void Delete(Event obj, Guid id)
+        public void SubscribeEvent(Guid idEvent, Guid idPlayer)
         {
-            //_eventRepository.Delete(obj);
+            Event eventObj = _unitOfWork.EventRepository.GetById(idEvent);
+
+            if (eventObj == null)
+                throw new Exception("Evento não encontrado.");
+
+            Player player = _unitOfWork.PlayerRepository.GetById(idPlayer);
+
+            if (player == null)
+                throw new Exception("Player não encontrado.");
+
+            if (eventObj.Players.Count >= eventObj.LimitPlayers)
+                throw new Exception("Não há mais vagas no evento.");
+
+            eventObj.SubscribePlayer(player);
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.EventRepository.Update(eventObj);
+            _unitOfWork.Commit();
+        }
+
+
+        public void Delete(Guid id)
+        {
+            Event eventObj = _unitOfWork.EventRepository.GetById(id);
+
+            if (eventObj == null)
+                throw new Exception("Evento não encontrado");
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.EventRepository.Delete(eventObj);
+            _unitOfWork.Commit();
         }
 
         public Event Update(Event obj)
         {
-            /*obj.Validate();
-            _eventRepository.Update(obj);
-            return obj;*/
+            obj.Validate();
 
-            return null;
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.EventRepository.Update(obj);
+            _unitOfWork.Commit();
+
+            return obj;
         }
     }
 }

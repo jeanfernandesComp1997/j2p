@@ -5,9 +5,11 @@ namespace j2p.Application.Interfaces
 {
     public interface IEventAppService : IAppServiceBase<Event>
     {
-        Event Add(Event obj, Guid idOwner);
+        Event Add(Event obj, Guid idOwner, Guid idLocal);
 
-        void Delete(Event obj);
+        void SubscribeEvent(Guid idEvent, Guid idPlayer);
+
+        void Delete(Guid id);
 
         Event Update(Event obj);
     }

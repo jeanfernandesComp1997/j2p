@@ -9,27 +9,26 @@ using System.Collections.Generic;
 
 namespace j2p.Presentation.Api.Controllers
 {
-    public class EventController : Controller
+    public class LocalController : Controller
     {
-        private readonly IEventAppService _eventAppService;
+        private readonly ILocalAppService _localAppService;
         private readonly IMapper _mapper;
 
-        public EventController(IEventAppService eventAppService, IMapper mapper)
+        public LocalController(ILocalAppService localAppService, IMapper mapper)
         {
-            _eventAppService = eventAppService;
+            _localAppService = localAppService;
             _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/v1/event/add/{idOwner:Guid}/{idLocal:Guid}")]
-        public IActionResult Add([FromBody] EventViewModel eventObj, Guid idOwner, Guid idLocal)
+        [Route("api/v1/local/add/{idOwner:Guid}")]
+        public IActionResult Add([FromBody] LocalViewModel local, Guid idOwner)
         {
             try
             {
-                var eventDomain = _mapper.Map<EventViewModel, Event>(eventObj);
-                var response = _eventAppService.Add(eventDomain, idOwner, idLocal);
-
+                var localDomain = _mapper.Map<LocalViewModel, Local>(local);
+                var response = _localAppService.Add(localDomain, idOwner);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -39,29 +38,13 @@ namespace j2p.Presentation.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
-        [Route("api/v1/event/subscribeevent")]
-        public IActionResult SubscribePlayer([FromBody] SubscribeEventViewModel subscribeEventObj)
-        {
-            try
-            {
-                _eventAppService.SubscribeEvent(subscribeEventObj.IdEvent, subscribeEventObj.IdPlayer);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [AllowAnonymous]
         [HttpDelete]
-        [Route("api/v1/event/delete/{id:Guid}")]
+        [Route("api/v1/local/delete/{id:Guid}")]
         public IActionResult Delete([FromBody] Guid id)
         {
             try
             {
-                _eventAppService.Delete(id);
+                _localAppService.Delete(id);
 
                 return Ok();
             }
@@ -73,13 +56,13 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpPut]
-        [Route("api/v1/event/update")]
-        public IActionResult Update([FromBody] EventViewModel eventObj)
+        [Route("api/v1/local/update")]
+        public IActionResult Update([FromBody] LocalViewModel local)
         {
             try
             {
-                var eventDomain = _mapper.Map<EventViewModel, Event>(eventObj);
-                var response = _eventAppService.Update(eventDomain);
+                var localDomain = _mapper.Map<LocalViewModel, Local>(local);
+                var response = _localAppService.Update(localDomain);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -90,12 +73,12 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("api/v1/event/getall")]
+        [Route("api/v1/local/getall")]
         public IActionResult GetAll()
         {
             try
             {
-                var response = _mapper.Map<IList<Event>, IList<EventViewModel>>(_eventAppService.GetAll());
+                var response = _mapper.Map<IList<Local>, IList<LocalViewModel>>(_localAppService.GetAll());
                 return Ok(response);
             }
             catch (Exception ex)
@@ -106,12 +89,12 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("api/v1/event/getbyid/{id:Guid}")]
+        [Route("api/v1/local/getbyid/{id:Guid}")]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                var response = _mapper.Map<Event, EventViewModel>(_eventAppService.GetById(id));
+                var response = _mapper.Map<Local, LocalViewModel>(_localAppService.GetById(id));
                 return Ok(response);
             }
             catch (Exception ex)

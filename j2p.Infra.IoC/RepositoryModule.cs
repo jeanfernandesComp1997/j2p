@@ -13,6 +13,7 @@ namespace j2p.Infra.IoC
             services.AddTransient<IBaseRepository<object>, RepositoryBase<object>>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<ILocalRepository, LocalRepository>();
         }
     }
 }

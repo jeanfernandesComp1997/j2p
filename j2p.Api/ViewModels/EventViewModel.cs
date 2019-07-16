@@ -1,4 +1,7 @@
-﻿using System;
+﻿using j2p.Domain.Entities;
+using j2p.Presentation.Api.ViewModels.AddViewModel;
+using System;
+using System.Collections.Generic;
 
 namespace j2p.Presentation.Api.ViewModels
 {
@@ -10,10 +13,16 @@ namespace j2p.Presentation.Api.ViewModels
 
         public DateTime Date { get; set; }
 
-        public double Value { get; set; }
+        public decimal Value { get; set; }
 
-        public int Limit { get; set; }
+        public int LimitPlayers { get; set; }
+
+        public LocalViewModel Local { get; set; }
+
+        public PlayerViewModel Owner { get; set; }
 
         public string Status { get; set; }
+
+        public IList<PlayerViewModel> Players { get; set; }
     }
 }

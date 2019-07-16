@@ -16,6 +16,7 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
 
         private IPlayerRepository playerRepository;
         private IEventRepository eventRepository;
+        private ILocalRepository localRepository;
 
         public ISession Session { get; private set; }
 
@@ -27,6 +28,11 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
         public IEventRepository EventRepository
         {
             get { return eventRepository ?? (eventRepository = new EventRepository(this.Session)); }
+        }
+
+        public ILocalRepository LocalRepository
+        {
+            get { return localRepository ?? (localRepository = new LocalRepository(this.Session)); }
         }
 
         public IOwnerRepository OwnerRepository => throw new NotImplementedException();

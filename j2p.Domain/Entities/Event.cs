@@ -1,4 +1,5 @@
 ﻿using j2p.Domain.Entities.Base;
+using j2p.Domain.Enum;
 using System;
 using System.Collections.Generic;
 
@@ -10,28 +11,33 @@ namespace j2p.Domain.Entities
 
         public virtual DateTime Date { get; protected set; }
 
-        public virtual double Value { get; protected set; }
+        public virtual decimal Value { get; protected set; }
 
-        public virtual int Limit { get; protected set; }
+        public virtual int LimitPlayers { get; protected set; }
 
-        public virtual string Status { get; protected set; }
+        public virtual EnumStatus Status { get; protected set; }
+
+        public virtual Local Local { get; protected set; }
 
         public virtual Player Owner { get; protected set; }
 
-        public virtual List<Player> Players { get; protected set; }
+        public virtual IList<Player> Players { get; protected set; }
+
+        public virtual IList<Local> Locals { get; protected set; }
 
         public Event()
         {
 
         }
 
-        public Event(string title, DateTime date, double value, int limit, string status, Player owner, List<Player> players)
+        public Event(string title, DateTime date, decimal value, int limit, EnumStatus status, Local local, Player owner, IList<Player> players)
         {
             Title = title;
             Date = date;
             Value = value;
-            Limit = limit;
-            Status = status;
+            LimitPlayers = limit;
+            Status = EnumStatus.InAnalyze;
+            Local = local;
             Owner = owner;
             Players = players;
         }
@@ -43,14 +49,21 @@ namespace j2p.Domain.Entities
 
             if (this.Date < DateTime.Now)
                 _errors.AppendLine("Data do evento inválida.");
-
-            if (string.IsNullOrEmpty(this.Status))
-                _errors.AppendLine("Status do evento inválido.");
         }
 
         public virtual void AddOwner(Player owner)
         {
             Owner = owner;
+        }
+
+        public virtual void AddLocal(Local local)
+        {
+            Local = local;
+        }
+
+        public virtual void SubscribePlayer(Player player)
+        {
+            Players.Add(player);
         }
     }
 }

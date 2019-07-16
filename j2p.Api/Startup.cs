@@ -39,6 +39,8 @@ namespace j2p.Presentation.Api
             var config = new AutoMapper.MapperConfiguration(c =>
             {
                 c.AddProfile(new ApplicationProfile());
+                /*c.AddProfile(new DomainToViewModelMappingProfile());
+                c.AddProfile(new ViewModelToDomainMappingProfile());*/
             });
 
             var mapper = config.CreateMapper();
