@@ -5,6 +5,7 @@ using j2p.Presentation.Api.ViewModels.AddViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace j2p.Presentation.Api.Controllers
 {
@@ -27,7 +28,7 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
-                var response = _playerAppService.Add(playerDomain);
+                var response = _mapper.Map<Player, PlayerViewModel>(_playerAppService.Add(playerDomain));
                 return Ok(response);
             }
             catch (Exception ex)
@@ -61,7 +62,7 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
-                var response = _playerAppService.Update(playerDomain);
+                var response = _mapper.Map<Player, PlayerViewModel>(_playerAppService.Update(playerDomain));
                 return Ok(response);
             }
             catch (Exception ex)
@@ -77,7 +78,7 @@ namespace j2p.Presentation.Api.Controllers
         {
             try
             {
-                var response = _playerAppService.GetAll();
+                var response = _mapper.Map<IList<Player>, IList<PlayerViewModel>>(_playerAppService.GetAll());
                 return Ok(response);
             }
             catch (Exception ex)
@@ -93,6 +94,7 @@ namespace j2p.Presentation.Api.Controllers
         {
             try
             {
+                //var response = _mapper.Map<Player, PlayerViewModel>(_playerAppService.GetById(id));
                 var response = _playerAppService.GetById(id);
                 return Ok(response);
             }

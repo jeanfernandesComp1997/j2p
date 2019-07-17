@@ -12,11 +12,13 @@ namespace j2p.Presentation.Api.Controllers
     public class EventController : Controller
     {
         private readonly IEventAppService _eventAppService;
+        private readonly ILocalAppService _localAppService;
         private readonly IMapper _mapper;
 
-        public EventController(IEventAppService eventAppService, IMapper mapper)
+        public EventController(IEventAppService eventAppService, ILocalAppService localAppService, IMapper mapper)
         {
             _eventAppService = eventAppService;
+            _localAppService = localAppService;
             _mapper = mapper;
         }
 
@@ -28,7 +30,7 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var eventDomain = _mapper.Map<EventViewModel, Event>(eventObj);
-                var response = _eventAppService.Add(eventDomain, idOwner, idLocal);
+                var response = _mapper.Map<Event, EventViewModel>(_eventAppService.Add(eventDomain, idOwner, idLocal)); 
 
                 return Ok(response);
             }
@@ -79,7 +81,7 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var eventDomain = _mapper.Map<EventViewModel, Event>(eventObj);
-                var response = _eventAppService.Update(eventDomain);
+                var response = _mapper.Map<Event, EventViewModel>(_eventAppService.Update(eventDomain));
                 return Ok(response);
             }
             catch (Exception ex)

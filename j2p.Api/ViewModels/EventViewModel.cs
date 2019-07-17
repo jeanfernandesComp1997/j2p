@@ -1,5 +1,4 @@
-﻿using j2p.Domain.Entities;
-using j2p.Presentation.Api.ViewModels.AddViewModel;
+﻿using j2p.Presentation.Api.ViewModels.AddViewModel;
 using System;
 using System.Collections.Generic;
 

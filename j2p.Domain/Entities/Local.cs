@@ -26,14 +26,12 @@ namespace j2p.Domain.Entities
 
         public virtual Player Owner { get; protected set; }
 
-        public virtual IList<Event> Events { get; protected set; }
-
         protected Local()
         {
 
         }
 
-        public Local(string country, string state, string city, string cep, string street, string number, string complement, string phone, EnumType type, Player owner, IList<Event> events)
+        public Local(string country, string state, string city, string cep, string street, string number, string complement, string phone, EnumType type, Player owner)
         {
             Country = country;
             State = state;
@@ -45,7 +43,6 @@ namespace j2p.Domain.Entities
             Phone = phone;
             Type = type;
             Owner = owner;
-            Events = events;
         }
 
         public override void Validate()
@@ -75,11 +72,6 @@ namespace j2p.Domain.Entities
         public virtual void AddOwner(Player owner)
         {
             Owner = owner;
-        }
-
-        public virtual void AddEvent(Event eventObj)
-        {
-            Events.Add(eventObj);
         }
     }
 }

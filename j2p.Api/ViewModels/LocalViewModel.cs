@@ -27,7 +27,5 @@ namespace j2p.Presentation.Api.ViewModels
         public string Type { get; set; }
 
         public PlayerViewModel Owner { get; set; }
-
-        public IList<EventViewModel> Events { get; set; }
     }
 }

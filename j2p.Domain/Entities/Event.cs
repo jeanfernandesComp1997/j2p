@@ -23,8 +23,6 @@ namespace j2p.Domain.Entities
 
         public virtual IList<Player> Players { get; protected set; }
 
-        public virtual IList<Local> Locals { get; protected set; }
-
         public Event()
         {
 

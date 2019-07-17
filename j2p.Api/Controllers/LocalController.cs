@@ -28,7 +28,7 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var localDomain = _mapper.Map<LocalViewModel, Local>(local);
-                var response = _localAppService.Add(localDomain, idOwner);
+                var response = _mapper.Map<Local, LocalViewModel>(_localAppService.Add(localDomain, idOwner));
                 return Ok(response);
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var localDomain = _mapper.Map<LocalViewModel, Local>(local);
-                var response = _localAppService.Update(localDomain);
+                var response = _mapper.Map<Local, LocalViewModel>(_localAppService.Update(localDomain));
                 return Ok(response);
             }
             catch (Exception ex)
