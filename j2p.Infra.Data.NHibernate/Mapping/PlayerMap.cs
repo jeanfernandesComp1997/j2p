@@ -16,7 +16,8 @@ namespace j2p.Infra.Data.NHibernate.Mapping
             Map(x => x.Phone).Length(35).Not.Nullable();
             Map(x => x.Picture).Nullable();
 
-            HasManyToMany(x => x.Events).Table("event_player").Cascade.All().Inverse();
+            //HasManyToMany(x => x.Events).Table("event_player").Cascade.All().Inverse();
+            HasManyToMany(x => x.Events).Table("event_player").ParentKeyColumn("EventId").ChildKeyColumn("PlayerId").Inverse();
         }
     }
 }

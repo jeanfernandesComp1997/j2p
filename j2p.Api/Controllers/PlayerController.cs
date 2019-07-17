@@ -94,8 +94,7 @@ namespace j2p.Presentation.Api.Controllers
         {
             try
             {
-                //var response = _mapper.Map<Player, PlayerViewModel>(_playerAppService.GetById(id));
-                var response = _playerAppService.GetById(id);
+                var response = _mapper.Map<Player, PlayerViewModel>(_playerAppService.GetById(id));
                 return Ok(response);
             }
             catch (Exception ex)
