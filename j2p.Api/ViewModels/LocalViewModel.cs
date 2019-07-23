@@ -1,6 +1,4 @@
-﻿using j2p.Presentation.Api.ViewModels.AddViewModel;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace j2p.Presentation.Api.ViewModels
 {
@@ -26,6 +24,6 @@ namespace j2p.Presentation.Api.ViewModels
 
         public string Type { get; set; }
 
-        public PlayerViewModel Owner { get; set; }
+        public OwnerViewModel Owner { get; set; }
     }
 }

@@ -60,6 +60,27 @@ namespace j2p.Domain.Services
             _unitOfWork.Commit();
         }
 
+        public void UnsubscribeEvent(Guid idEvent, Guid idPlayer)
+        {
+            Event eventObj = _unitOfWork.EventRepository.GetById(idEvent);
+
+            if (eventObj == null)
+                throw new Exception("Evento não encontrado.");
+
+            Player player = _unitOfWork.PlayerRepository.GetById(idPlayer);
+
+            if (player == null)
+                throw new Exception("Player não encontrado.");
+
+            if (eventObj.Players.Count >= eventObj.LimitPlayers)
+                throw new Exception("Não há mais vagas no evento.");
+
+            eventObj.UnsubscribeEvent(player);
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.EventRepository.Update(eventObj);
+            _unitOfWork.Commit();
+        }
 
         public void Delete(Guid id)
         {

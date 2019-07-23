@@ -1,10 +1,11 @@
-﻿
+﻿using System;
+
 namespace j2p.Domain.Entities
 {
     public class Owner : User
     {
-        public string Cpf { get; protected set; }
-        public string Cnpj { get; protected set; }
+        public virtual string Cpf { get; protected set; }
+        public virtual string Cnpj { get; protected set; }
 
         protected Owner()
         {
@@ -15,6 +16,14 @@ namespace j2p.Domain.Entities
         {
             Cpf = cpf;
             Cnpj = cnpj;
+        }
+
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (_errors.Length > 0)
+                throw new Exception(_errors.ToString());
         }
     }
 }

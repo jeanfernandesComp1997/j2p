@@ -6,7 +6,6 @@ using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using System;
 
-
 namespace j2p.Infra.Data.NHibernate.UnitOfWork
 {
     public class UnitOfWork : IDisposable, IUoWRepository
@@ -17,6 +16,7 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
         private IPlayerRepository playerRepository;
         private IEventRepository eventRepository;
         private ILocalRepository localRepository;
+        private IOwnerRepository ownerRepository;
 
         public ISession Session { get; private set; }
 
@@ -35,7 +35,10 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
             get { return localRepository ?? (localRepository = new LocalRepository(this.Session)); }
         }
 
-        public IOwnerRepository OwnerRepository => throw new NotImplementedException();
+        public IOwnerRepository OwnerRepository
+        {
+            get { return ownerRepository ?? (ownerRepository = new OwnerRepository(this.Session)); }
+        }
 
         static UnitOfWork()
         {
@@ -46,6 +49,7 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Mapping.PlayerMap>())
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Mapping.EventMap>())
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Mapping.LocalMap>())
+                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<Mapping.OwnerMap>())
                 .ExposeConfiguration(x => x.Properties.Add("hbm2ddl.keywords", "none"))
                 .ExposeConfiguration(x => new SchemaUpdate(x).Execute(true, true))
                 .BuildSessionFactory();

@@ -12,6 +12,7 @@ namespace j2p.Infra.IoC
             services.AddTransient<IPlayerAppService, PlayerAppService>();
             services.AddTransient<IEventAppService, EventAppService>();
             services.AddTransient<ILocalAppService, LocalAppService>();
+            services.AddTransient<IOwnerAppService, OwnerAppService>();
         }
     }
 }

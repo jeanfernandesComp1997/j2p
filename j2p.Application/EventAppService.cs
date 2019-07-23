@@ -26,6 +26,11 @@ namespace j2p.Application
             _eventService.SubscribeEvent(idEvent, idPlayer);
         }
 
+        public void UnsubscribeEvent(Guid idEvent, Guid idPlayer)
+        {
+            _eventService.UnsubscribeEvent(idEvent, idPlayer);
+        }
+
         public void Delete(Guid id)
         {
             _eventService.Delete(id);

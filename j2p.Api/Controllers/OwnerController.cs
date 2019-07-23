@@ -9,26 +9,26 @@ using System.Collections.Generic;
 
 namespace j2p.Presentation.Api.Controllers
 {
-    public class LocalController : Controller
+    public class OwnerController : Controller
     {
-        private readonly ILocalAppService _localAppService;
+        private readonly IOwnerAppService _ownerAppService;
         private readonly IMapper _mapper;
 
-        public LocalController(ILocalAppService localAppService, IMapper mapper)
+        public OwnerController(IOwnerAppService ownerAppService, IMapper mapper)
         {
-            _localAppService = localAppService;
+            _ownerAppService = ownerAppService;
             _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/v1/local/add")]
-        public IActionResult Add([FromBody] LocalViewModel local, Guid idOwner)
+        [Route("api/v1/owner/add")]
+        public IActionResult Add([FromBody] OwnerViewModel owner)
         {
             try
             {
-                var localDomain = _mapper.Map<LocalViewModel, Local>(local);
-                var response = _mapper.Map<Local, LocalViewModel>(_localAppService.Add(localDomain, idOwner));
+                var ownerDomain = _mapper.Map<OwnerViewModel, Owner>(owner);
+                var response = _mapper.Map<Owner, OwnerViewModel>(_ownerAppService.Add(ownerDomain));
                 return Ok(response);
             }
             catch (Exception ex)
@@ -39,13 +39,12 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpDelete]
-        [Route("api/v1/local/delete/{id:Guid}")]
-        public IActionResult Delete([FromBody] Guid id)
+        [Route("api/v1/owner/delete/{id:Guid}")]
+        public IActionResult Delete(Guid id)
         {
             try
             {
-                _localAppService.Delete(id);
-
+                _ownerAppService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -56,13 +55,13 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpPut]
-        [Route("api/v1/local/update")]
-        public IActionResult Update([FromBody] LocalViewModel local)
+        [Route("api/v1/owner/update")]
+        public IActionResult Update([FromBody] OwnerViewModel owner)
         {
             try
             {
-                var localDomain = _mapper.Map<LocalViewModel, Local>(local);
-                var response = _mapper.Map<Local, LocalViewModel>(_localAppService.Update(localDomain));
+                var ownerDomain = _mapper.Map<OwnerViewModel, Owner>(owner);
+                var response = _mapper.Map<Owner, OwnerViewModel>(_ownerAppService.Update(ownerDomain));
                 return Ok(response);
             }
             catch (Exception ex)
@@ -73,12 +72,12 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("api/v1/local/getall")]
+        [Route("api/v1/owner/getall")]
         public IActionResult GetAll()
         {
             try
             {
-                var response = _mapper.Map<IList<Local>, IList<LocalViewModel>>(_localAppService.GetAll());
+                var response = _mapper.Map<IList<Owner>, IList<OwnerViewModel>>(_ownerAppService.GetAll());
                 return Ok(response);
             }
             catch (Exception ex)
@@ -89,12 +88,12 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("api/v1/local/getbyid/{id:Guid}")]
+        [Route("api/v1/owner/getbyid/{id:Guid}")]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                var response = _mapper.Map<Local, LocalViewModel>(_localAppService.GetById(id));
+                var response = _mapper.Map<Owner, OwnerViewModel>(_ownerAppService.GetById(id));
                 return Ok(response);
             }
             catch (Exception ex)

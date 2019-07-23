@@ -18,7 +18,6 @@ namespace j2p.Infra.Data.NHibernate.Mapping
             References(x => x.Local).Column("LocalId").ForeignKey("FK_Local_Event");
             References(x => x.Owner).Column("OwnerId").ForeignKey("FK_Owner_Event");
 
-            //HasManyToMany(x => x.Players).Table("event_player");
             HasManyToMany(x => x.Players).Table("event_player").ParentKeyColumn("EventId").ChildKeyColumn("PlayerId").LazyLoad().Cascade.SaveUpdate();
         }
     }

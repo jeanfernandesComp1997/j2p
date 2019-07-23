@@ -1,5 +1,6 @@
 ﻿using j2p.Domain.Entities.Base;
 using j2p.Domain.Enum;
+using System;
 using System.Collections.Generic;
 
 namespace j2p.Domain.Entities
@@ -24,14 +25,14 @@ namespace j2p.Domain.Entities
 
         public virtual EnumType Type { get; protected set; }
 
-        public virtual Player Owner { get; protected set; }
+        public virtual Owner Owner { get; protected set; }
 
         protected Local()
         {
 
         }
 
-        public Local(string country, string state, string city, string cep, string street, string number, string complement, string phone, EnumType type, Player owner)
+        public Local(string country, string state, string city, string cep, string street, string number, string complement, string phone, EnumType type, Owner owner)
         {
             Country = country;
             State = state;
@@ -67,9 +68,12 @@ namespace j2p.Domain.Entities
 
             if (string.IsNullOrEmpty(this.Phone))
                 _errors.AppendLine("Telefone inválido.");
+
+            if (_errors.Length > 0)
+                throw new Exception(_errors.ToString());
         }
 
-        public virtual void AddOwner(Player owner)
+        public virtual void AddOwner(Owner owner)
         {
             Owner = owner;
         }

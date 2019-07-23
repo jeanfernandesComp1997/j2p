@@ -16,7 +16,7 @@ namespace j2p.Domain.Services
 
         public Local Add(Local obj, Guid idOwner)
         {
-            Player owner = _unitOfWork.PlayerRepository.GetById(idOwner);
+            Owner owner = _unitOfWork.OwnerRepository.GetById(idOwner);
 
             if (owner == null)
                 throw new Exception("Owner não encontrado.");

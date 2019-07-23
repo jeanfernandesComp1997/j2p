@@ -47,6 +47,9 @@ namespace j2p.Domain.Entities
 
             if (this.Date < DateTime.Now)
                 _errors.AppendLine("Data do evento inválida.");
+
+            if (_errors.Length > 0)
+                throw new Exception(_errors.ToString());
         }
 
         public virtual void AddOwner(Player owner)
@@ -62,6 +65,11 @@ namespace j2p.Domain.Entities
         public virtual void SubscribePlayer(Player player)
         {
             Players.Add(player);
+        }
+
+        public virtual void UnsubscribeEvent(Player player)
+        {
+            Players.Remove(player);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace j2p.Application
 
         public IList<TEntity> FindBy(Expression<Func<TEntity, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _serviceBase.FindBy(filter);
         }
 
         public IList<TEntity> GetAll()

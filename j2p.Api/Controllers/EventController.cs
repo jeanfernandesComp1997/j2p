@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace j2p.Presentation.Api.Controllers
 {
     public class EventController : Controller
     {
         private readonly IEventAppService _eventAppService;
-        private readonly ILocalAppService _localAppService;
         private readonly IMapper _mapper;
 
         public EventController(IEventAppService eventAppService, ILocalAppService localAppService, IMapper mapper)
         {
             _eventAppService = eventAppService;
-            _localAppService = localAppService;
             _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("api/v1/event/add/{idOwner:Guid}/{idLocal:Guid}")]
+        [Route("api/v1/event/add")]
         public IActionResult Add([FromBody] EventViewModel eventObj, Guid idOwner, Guid idLocal)
         {
             try
@@ -48,6 +48,22 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 _eventAppService.SubscribeEvent(subscribeEventObj.IdEvent, subscribeEventObj.IdPlayer);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("api/v1/event/unsubscribeevent")]
+        public IActionResult UnsubscribeEvent([FromBody] SubscribeEventViewModel subscribeEventObj)
+        {
+            try
+            {
+                _eventAppService.UnsubscribeEvent(subscribeEventObj.IdEvent, subscribeEventObj.IdPlayer);
                 return Ok();
             }
             catch (Exception ex)
@@ -114,6 +130,24 @@ namespace j2p.Presentation.Api.Controllers
             try
             {
                 var response = _mapper.Map<Event, EventViewModel>(_eventAppService.GetById(id));
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("api/v1/event/findby/{id:Guid}")]
+        public IActionResult FindBy(Guid id)
+        {
+            try
+            {
+                Expression<Func<Event, bool>> filter = x => x.Players.Any(y => y.Id == id);
+                var response = _mapper.Map<IList<Event>, IList<EventViewModel>>(_eventAppService.FindBy(filter));
+
                 return Ok(response);
             }
             catch (Exception ex)

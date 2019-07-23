@@ -39,13 +39,12 @@ namespace j2p.Presentation.Api.Controllers
 
         [AllowAnonymous]
         [HttpDelete]
-        [Route("api/v1/player/delete")]
-        public IActionResult Delete([FromBody] PlayerViewModel player)
+        [Route("api/v1/player/delete/{id:Guid}")]
+        public IActionResult Delete(Guid id)
         {
             try
             {
-                var playerDomain = _mapper.Map<PlayerViewModel, Player>(player);
-                _playerAppService.Delete(playerDomain);
+                _playerAppService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

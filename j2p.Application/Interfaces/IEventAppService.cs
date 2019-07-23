@@ -9,6 +9,8 @@ namespace j2p.Application.Interfaces
 
         void SubscribeEvent(Guid idEvent, Guid idPlayer);
 
+        void UnsubscribeEvent(Guid idEvent, Guid idPlayer);
+
         void Delete(Guid id);
 
         Event Update(Event obj);
