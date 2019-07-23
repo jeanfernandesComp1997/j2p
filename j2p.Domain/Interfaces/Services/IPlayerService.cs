@@ -7,6 +7,8 @@ namespace j2p.Domain.Interfaces.Services
     {
         Player Save(Player obj);
 
+        Player Authentication(string email, string password);
+
         void Delete(Guid id);
 
         Player Update(Player obj);

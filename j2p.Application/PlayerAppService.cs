@@ -21,6 +21,11 @@ namespace j2p.Application
             return obj;
         }
 
+        public Player Authentication(string email, string password)
+        {
+            return _playerService.Authentication(email, password);
+        }
+
         public void Delete(Guid id)
         {
             _playerService.Delete(id);

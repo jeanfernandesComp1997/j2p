@@ -7,6 +7,8 @@ namespace j2p.Application.Interfaces
     {
         Player Add(Player obj);
 
+        Player Authentication(string email, string password);
+
         void Delete(Guid id);
 
         Player Update(Player obj);

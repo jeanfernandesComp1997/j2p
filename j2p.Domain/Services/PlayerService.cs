@@ -25,6 +25,13 @@ namespace j2p.Domain.Services
             return obj;
         }
 
+        public Player Authentication(string email, string password)
+        {
+            Player player = new Player(email, password);
+
+            return _unitOfWork.PlayerRepository.Authentication(player.Email, player.Password);
+        }
+
         public void Delete(Guid id)
         {
             Player player = _unitOfWork.PlayerRepository.GetById(id);

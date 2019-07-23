@@ -1,7 +1,5 @@
 ﻿using j2p.Domain.Entities.Base;
 using j2p.Domain.Extensions;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace j2p.Domain.Entities
 {

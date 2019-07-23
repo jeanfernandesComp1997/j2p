@@ -14,6 +14,11 @@ namespace j2p.Domain.Entities
 
         }
 
+        public Player(string email, string password) : base(email, password)
+        {
+
+        }
+
         public Player(string firstName, string lastName, string email, string password, string phone, string picture, IList<Event> events) : base(firstName, lastName, email, password, phone)
         {
             Picture = picture;

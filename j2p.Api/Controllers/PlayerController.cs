@@ -1,11 +1,20 @@
 ﻿using AutoMapper;
 using j2p.Application.Interfaces;
 using j2p.Domain.Entities;
+using j2p.Presentation.Api.Security;
+using j2p.Presentation.Api.ViewModels;
 using j2p.Presentation.Api.ViewModels.AddViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace j2p.Presentation.Api.Controllers
 {
@@ -34,6 +43,66 @@ namespace j2p.Presentation.Api.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("api/v1/player/autentication")]
+        public object Autentication(
+            [FromBody]AutenticationViewModel request,
+            [FromServices]SigningConfigurations signingConfigurations,
+            [FromServices]TokenConfiguration tokenConfigurations)
+        {
+            bool validCredentials = false;
+
+            var response = _mapper.Map<Player, PlayerViewModel>(_playerAppService.Authentication(request.Email, request.Password));
+
+            validCredentials = response != null;
+
+
+            if (validCredentials)
+            {
+                ClaimsIdentity identity = new ClaimsIdentity(
+                    new GenericIdentity(response.Id.ToString(), "Id"),
+                    new[] {
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
+                        new Claim("User", JsonConvert.SerializeObject(response))
+                    }
+                );
+
+                DateTime dataCriacao = DateTime.Now;
+                DateTime dataExpiracao = dataCriacao +
+                    TimeSpan.FromSeconds(tokenConfigurations.Seconds);
+
+                var handler = new JwtSecurityTokenHandler();
+                var securityToken = handler.CreateToken(new SecurityTokenDescriptor
+                {
+                    Issuer = tokenConfigurations.Issuer,
+                    Audience = tokenConfigurations.Audience,
+                    SigningCredentials = signingConfigurations.SigningCredentials,
+                    Subject = identity,
+                    NotBefore = dataCriacao,
+                    Expires = dataExpiracao
+                });
+                var token = handler.WriteToken(securityToken);
+
+                return new
+                {
+                    authenticated = true,
+                    created = dataCriacao.ToString("yyyy-MM-dd HH:mm:ss"),
+                    expiration = dataExpiracao.ToString("yyyy-MM-dd HH:mm:ss"),
+                    accessToken = token,
+                    message = "OK",
+                    FirstName = response.FirstName
+                };
+            }
+            else
+            {
+                return new
+                {
+                    authenticated = false,
+                };
             }
         }
 
