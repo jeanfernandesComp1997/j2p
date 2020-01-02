@@ -145,8 +145,7 @@ namespace j2p.Presentation.Api.Controllers
         {
             try
             {
-                Expression<Func<Event, bool>> filter = x => x.Players.Any(y => y.Id == id);
-                var response = _mapper.Map<IList<Event>, IList<EventViewModel>>(_eventAppService.FindBy(filter));
+                var response = _mapper.Map<IList<Event>, IList<EventViewModel>>(_eventAppService.FindBy(x => x.Players.Any(y => y.Id == id)));
 
                 return Ok(response);
             }

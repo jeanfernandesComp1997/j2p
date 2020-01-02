@@ -11,8 +11,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Security.Principal;
 
@@ -94,7 +92,8 @@ namespace j2p.Presentation.Api.Controllers
                     expiration = dataExpiracao.ToString("yyyy-MM-dd HH:mm:ss"),
                     accessToken = token,
                     message = "OK",
-                    FirstName = response.FirstName
+                    FirstName = response.FirstName,
+                    Id = response.Id
                 };
             }
             else

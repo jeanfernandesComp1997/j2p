@@ -17,6 +17,7 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
         private IEventRepository eventRepository;
         private ILocalRepository localRepository;
         private IOwnerRepository ownerRepository;
+        
 
         public ISession Session { get; private set; }
 
@@ -42,7 +43,7 @@ namespace j2p.Infra.Data.NHibernate.UnitOfWork
 
         static UnitOfWork()
         {
-            string conn = "server=localhost;port=3306;database=j2p;uid=root;password=jcfm123987";
+            string conn = Environment.GetEnvironmentVariable("CONNECTION");
 
             _sessionFactory = Fluently.Configure()
                 .Database(MySQLConfiguration.Standard.ConnectionString(conn))

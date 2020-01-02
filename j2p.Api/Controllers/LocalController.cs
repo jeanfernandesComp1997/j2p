@@ -102,5 +102,22 @@ namespace j2p.Presentation.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("api/v1/local/findby/{city}")]
+        public IActionResult FindBy(string city)
+        {
+            try
+            {
+                var response = _mapper.Map<IList<Local>, IList<LocalViewModel>>(_localAppService.FindBy(x => x.City == city));
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

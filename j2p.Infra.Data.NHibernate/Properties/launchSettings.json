@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "j2p.Infra.Data.NHibernate": {
+      "commandName": "Project"
+    }
+  }
+}
